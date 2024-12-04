@@ -1,0 +1,32 @@
+{
+  "name": "hospitalgis",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+	"babel-cli": "^6.0.0",
+    "babel-preset-es2015": "",
+    "bower": "^1.8.14",
+    "gulp": "*",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "*",
+    "gulp-notify": "",
+    "gulp-plumber": "",
+    "gulp-replace": "",
+    "gulp-shell": "^0.6.3",
+    "gulp-sourcemaps": "",
+    "gulp-uglify": "^1.5.1",
+    "gulp-terser": "*",
+	"gulp-rename": "^1.2.2",
+	"js-beautify": "^1.5.10",
+	"strip-indent": "^2.0.0",
+	
+    
+    "ol": "^10.2.1"
+  }
+}
