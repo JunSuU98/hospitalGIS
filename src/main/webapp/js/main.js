@@ -5,11 +5,18 @@ const map = new ol.Map({
       source: new ol.source.OSM(), // WFS 형식의 요청으로 geoserver 데이터를 받아온다
     }),
   ],
-  view: new ol.View({
+  //view: new ol.View({
+   // center: ol.proj.fromLonLat([126.99686910698, 35.55713944812743]),
+   // zoom: 7,
+  //}),
+});
+
+var mapView = new ol.View({
     center: ol.proj.fromLonLat([126.99686910698, 35.55713944812743]),
     zoom: 7,
-  }),
-});
+})
+
+map.setView(mapView)
 
 /**
  * 텍스트 라벨 생성
@@ -323,7 +330,7 @@ selectClick.on('select', function(e){
 	} else if (e.selected[0].values_.li_kor_nm != undefined){
 		clickedArea = e.selected[0].values_.li_kor_nm;
 	} else {
-		clickedArea = 'notChecked';
+		clickedArea = 'notClicked';
 	}
 	
 	$('#map-click').val(clickedArea);

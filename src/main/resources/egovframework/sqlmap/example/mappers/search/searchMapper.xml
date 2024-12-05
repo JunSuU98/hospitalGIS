@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kjs.hospitalGIS.mapper.SearchMapper">
+
+	<select id="search" parameterType="searchVO" resultType="resultVO">
+	
+		SELECT
+		
+			enc_hosp_cd,
+			hosp_nm,
+			inst_nm,
+			prove_nm,
+			dist_nm,
+			emd_nm,
+			addr,
+			tel_no,
+			web_url,
+			coord_x,
+			coord_y
+		
+		FROM hospital.hospital
+				
+		<choose>
+			<when test="filter == 'addr'">
+				WHERE addr LIKE '%' || #{query} || '%'
+			</when>
+			
+			<when test="filter == 'instNm'">
+				WHERE addr LIKE '%' || #{mapClicked} || '%' AND inst_nm LIKE '%' || #{query} || '%'
+			</when>
+			
+			<otherwise>
+				WHERE addr LIKE '%' || #{mapClicked} || '%' AND hosp_nm LIKE '%' || #{query} || '%'
+			</otherwise>
+		
+		</choose>
+	</select>
+
+</mapper>

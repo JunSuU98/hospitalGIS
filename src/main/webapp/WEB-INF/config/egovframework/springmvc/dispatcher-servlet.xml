@@ -17,6 +17,12 @@
         <property name="webBindingInitializer">
             <bean class="egovframework.example.cmmn.web.EgovBindingInitializer"/>
         </property>
+        
+        <property name="messageConverters">
+        	<list>
+        		<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+        	</list>
+        </property>
     </bean>
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
         <property name="interceptors">
@@ -25,6 +31,8 @@
             </list>
         </property>
     </bean>
+    
+	
     
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
     <!-- 쿠키를 이용한 Locale 이용시 <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/> -->

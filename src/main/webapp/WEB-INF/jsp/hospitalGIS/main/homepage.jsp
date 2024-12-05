@@ -8,6 +8,9 @@
 <title>병원 위치 조회 서비스</title>
 <script src="<c:url value='/assets/js/plugins.min.js?${System.currentTimeMillis()}'/>"></script>
 <script defer src="<c:url value='/js/main.js'/>"></script>
+<script defer src="<c:url value='/js/search.js'/>"></script>
+<script defer src="<c:url value='/js/move.js'/>"></script>
+<link rel="stylesheet" href="<c:url value='/css/hospitalGIS/bootstrap.css' />">
 <link rel="stylesheet" href="<c:url value='/css/hospitalGIS/main.css' />">
 </head>
 <body>
@@ -18,39 +21,50 @@
 		</div> 
 
 		<form id="search-form" action="" method="get">
-			<div id="buttons">
-				<input type="checkbox" id="sido-chk"></input>
+			<div id="chkbox-div">
+				<input type="checkbox" id="sido-chk" value="sido"></input>
 				<label for="sido-chk">시도</label>
-				<input type="checkbox" id="sgg-chk"></input>
+				<input type="checkbox" id="sgg-chk" value="sgg"></input>
 				<label for="sgg-chk">시군구</label>
-				<input type="checkbox" id="emd-chk"></input>
+				<input type="checkbox" id="emd-chk" value="emd"></input>
 				<label for="emd-chk">읍면동</label>
-				<input type="checkbox" id="li-chk"></input>
+				<input type="checkbox" id="li-chk" value="li"></input>
 				<label for="li-chk">리</label>
-				<input type="checkbox" id="hospital-chk"></input>
+				<input type="checkbox" id="hospital-chk" value="hospital"></input>
 				<label for="hospital-chk">병원보기</label>
 			</div>
 			
 			<div id="searchDiv">
 				<label>
 					<label for="filter">검색옵션</label>
-					<select name="filter" id="searchFilter">
+					<select name="filter" id="search-filter">
 						<option value="hospitalName">병원이름</option>
-						<option value="sido">시도</option>
-						<option value="sgg">시군구</option>
-						<option value="emd">읍면동</option>
-						<option value="ri">리</option>
+						<option value="instNm">병원구분</option>
+						<option value="addr">주소</option>
 					</select>
 				</label>
 				<input type="hidden" id="map-click" name="map-click">
-				<input type="text" name="query">
+				<input type="text" name="query" id="search-query">
 				<button type="submit">search</button>
 			</div>
 			
 			<div id="resultDiv">
-				<ul id="resultUl">
-					<li>test</li>
-				</ul>
+				<table class="table table-striped" id="resultTable">
+					<thead id="resultHead">
+						<tr>
+							<th>번호</th>
+							<th>병원 이름</th>
+							<th>주소</th>
+							<th>구분</th>
+							<th>전화번호</th>
+							<th>웹사이트</th>
+							<th>위치</th>
+						</tr>
+					</thead>
+					<tbody id="resultBody">
+
+					</tbody>
+				</table>
 			</div>
 		</form>
 

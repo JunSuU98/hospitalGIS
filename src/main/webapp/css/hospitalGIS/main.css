@@ -7,3 +7,14 @@
 #buttons {
 	margin-left: 20px;
 }
+
+#resultHead{
+	display: inline-block;
+}
+
+#resultBody {
+	display: inline-block;
+	max-height: 70vh;
+	overflow-y: auto;
+	
+}
