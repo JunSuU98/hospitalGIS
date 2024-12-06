@@ -20,6 +20,9 @@ $('#search-form').on("submit", function(event){
 				if(res[i].webUrl == null){
 					res[i].webUrl = "";
 				}
+				if(res[i].telNo == null){
+					res[i].telNo = "";
+				}
 
 				let html = `
 					<tr>
@@ -30,7 +33,7 @@ $('#search-form').on("submit", function(event){
 						<td>${res[i].telNo}</td>
 						<td><a href=${res[i].webUrl}>${res[i].webUrl}</a></td>
 						<td>
-							<button type="button" id=${res[i].encHospCd} onclick="gotoMap(${res[i].coordX}, ${res[i].coordY})">location</button>
+							<button type="button" id=${res[i].encHospCd} onclick="gotoMap(${res[i].coordX}, ${res[i].coordY}, this)" data-value='${JSON.stringify(res[i])}'>location</button>
 						</td>
 					</tr>
 				`

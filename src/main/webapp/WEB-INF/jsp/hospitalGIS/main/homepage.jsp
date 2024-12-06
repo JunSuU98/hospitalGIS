@@ -10,6 +10,7 @@
 <script defer src="<c:url value='/js/main.js'/>"></script>
 <script defer src="<c:url value='/js/search.js'/>"></script>
 <script defer src="<c:url value='/js/move.js'/>"></script>
+<script defer src="<c:url value='/js/popup.js'/>"></script>
 <link rel="stylesheet" href="<c:url value='/css/hospitalGIS/bootstrap.css' />">
 <link rel="stylesheet" href="<c:url value='/css/hospitalGIS/main.css' />">
 </head>
@@ -17,8 +18,14 @@
 	hospital GIS
 	
 	<div id="container">
-		<div id="map" style="height: 80vh; width: 60vw;">
-		</div> 
+		<!-- map -->
+		<div id="map" style="height: 80vh; width: 60vw;"></div> 
+
+		<!-- popup -->
+		<div id="popup" class="ol-popup">
+			<a href="#" id="popup-closer" class="ol-popup-closer"></a>
+			<div id="popup-content"></div>
+		</div>
 
 		<form id="search-form" action="" method="get">
 			<div id="chkbox-div">

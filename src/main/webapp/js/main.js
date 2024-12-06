@@ -215,6 +215,7 @@ var liVectorLayer = new ol.layer.Vector({
 });
 
 var hospitalVectorSource = new ol.source.Vector({
+	attributions: ["hospitalVector"],
 	format: new ol.format.GeoJSON(),
     loader: function(extent, resolution, projection){
       var url = 'http://localhost:8088/geoserver/wfs?service=WFS' +
@@ -303,13 +304,10 @@ $('#hospital-chk').on('click', function(){
 var selectClick = new ol.interaction.Select({
 	condition: ol.events.condition.click,
 	style: new ol.style.Style({
-		fill: new ol.style.Fill({
-		    stroke: new ol.style.Stroke({
+		stroke: new ol.style.Stroke({
             color: "red",
             width: 2
         }),
-			 color: 'rgba(255,204,102,0.5)',
-		})
 	}),
 })
 
