@@ -3,7 +3,7 @@ function gotoMap(x, y, data) {
 	const res = JSON.parse(data.dataset.value);
 
     // 1. xy 값을 받아서 알맞은 좌표계 값으로 변환
-    var location = ol.proj.transform([x, y], "EPSG:4326", "EPSG:3857");
+    let location = ol.proj.transform([x, y], "EPSG:4326", "EPSG:3857");
 
     // 2. 실제 view 이동
     mapView.animate({
@@ -38,7 +38,7 @@ function gotoMap(x, y, data) {
 		<div>${res.instNm}</div>
 		<div>${res.telNo}</div>
 		<div>
-			<a href='${res.webUrl}'>${res.webUrl}</a>
+			<a href='${res.webUrl}' target="_blank">${res.webUrl}</a>
 		</div>
 	`
     popupOverlay.setPosition(location);

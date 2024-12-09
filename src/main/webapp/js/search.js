@@ -31,7 +31,7 @@ $('#search-form').on("submit", function(event){
 						<td>${res[i].addr}</td>
 						<td>${res[i].instNm}</td>
 						<td>${res[i].telNo}</td>
-						<td><a href=${res[i].webUrl}>${res[i].webUrl}</a></td>
+						<td><a href=${res[i].webUrl} target="_blank">${res[i].webUrl}</a></td>
 						<td>
 							<button type="button" id=${res[i].encHospCd} onclick="gotoMap(${res[i].coordX}, ${res[i].coordY}, this)" data-value='${JSON.stringify(res[i])}'>location</button>
 						</td>

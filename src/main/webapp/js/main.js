@@ -5,10 +5,6 @@ const map = new ol.Map({
       source: new ol.source.OSM(), // WFS 형식의 요청으로 geoserver 데이터를 받아온다
     }),
   ],
-  //view: new ol.View({
-   // center: ol.proj.fromLonLat([126.99686910698, 35.55713944812743]),
-   // zoom: 7,
-  //}),
 });
 
 var mapView = new ol.View({
@@ -313,10 +309,14 @@ var selectClick = new ol.interaction.Select({
 
 map.addInteraction(selectClick);
 
-selectClick.on('select', function(e){
+selectClick.on('select', function(e){ //click 을 통한 select 가 일어났을 때 동작
 	console.log(e.selected)
 	
 	var clickedArea = '';
+	
+	if(e.selected[0] == undefined){; // 병원 레이어를 키고 병원이 아닌 일반 지역을 선택했을 때 오류처리
+		return false;
+	}
 	
 	// 체크박스의 체크 여부에 따라서 input 에 넣는 값의 이름이 달라져야한다 아니면 undefined 로 조건 검사
 	if(e.selected[0].values_.ctp_kor_nm != undefined){
@@ -327,10 +327,39 @@ selectClick.on('select', function(e){
 		clickedArea = e.selected[0].values_.emd_kor_nm;
 	} else if (e.selected[0].values_.li_kor_nm != undefined){
 		clickedArea = e.selected[0].values_.li_kor_nm;
-	} else {
+	} else { 
 		clickedArea = 'notClicked';
 	}
 	
 	$('#map-click').val(clickedArea);
+
+  // 병원 클릭 시 팝업
+  if (e.selected[0].values_.enc_hosp_cd != undefined) {
+
+    let x = Number(e.selected[0].values_.coord_x) // string 으로 값을 가져오기 때문에 정상적인 변환을 위해서 number 로 변환한다
+    let y = Number(e.selected[0].values_.coord_y)
+
+    let location = ol.proj.transform([x, y], "EPSG:4326", "EPSG:3857");
+
+	if(e.selected[0].values_.web_url == null){
+		e.selected[0].values_.web_url = "";
+	}
+	if(e.selected[0].values_.tel_no == null){
+		e.selected[0].values_.tel_no = "";
+	}
+
+    // 팝업을 띄운다
+    popupContent.innerHTML = `
+        <div>${e.selected[0].values_.hosp_nm}</div>
+        <div>${e.selected[0].values_.addr}</div>
+        <div>${e.selected[0].values_.inst_nm}</div>
+        <div>${e.selected[0].values_.tel_no}</div>
+        <div>
+          <a href='${e.selected[0].values_.web_url}' target="_blank">${e.selected[0].values_.web_url}</a>
+        </div>
+      `
+      popupOverlay.setPosition(location);
+
+  }
 })
 
